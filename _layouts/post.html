@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<article class="post">
+  <header>
+    <h1>{{ page.title | default: "Untitled" }}</h1>
+    <div class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></div>
+    {% if page.tags.size > 0 %}
+      <div class="tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+    {% endif %}
+  </header>
+  <div class="post-content">{{ content }}</div>
+</article>
+<nav class="post-nav" aria-label="Adjacent posts">
+  {% if page.previous %}<a class="post-nav-link" href="{{ page.previous.url | relative_url }}">&larr; Older: {{ page.previous.title | default: "Untitled" }}</a>{% else %}<span></span>{% endif %}
+  {% if page.next %}<a class="post-nav-link align-right" href="{{ page.next.url | relative_url }}">Newer: {{ page.next.title | default: "Untitled" }} &rarr;</a>{% endif %}
+</nav>
+

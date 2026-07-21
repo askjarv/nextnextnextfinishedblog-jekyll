@@ -1,0 +1,28 @@
+---
+layout: default
+title: Home
+---
+
+{% assign post_list = paginator.posts | default: site.posts %}
+{% for post in post_list %}
+  <article class="post-card">
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title | default: "Untitled" }}</a></h2>
+    <div class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time></div>
+    {% if post.tags.size > 0 %}
+      <div class="tags">
+        {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+    {% endif %}
+    <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 280 }}</p>
+    <p><a class="read-more" href="{{ post.url | relative_url }}">Read more</a></p>
+  </article>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+  <nav class="pagination" aria-label="Post pages">
+    {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>{% else %}<span class="disabled">&larr; Newer</span>{% endif %}
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>{% else %}<span class="disabled">Older &rarr;</span>{% endif %}
+  </nav>
+{% endif %}
+

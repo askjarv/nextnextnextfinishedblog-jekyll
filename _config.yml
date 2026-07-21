@@ -1,0 +1,33 @@
+title: "Next Next Next... Finished"
+description: "A geeky blog about technical things"
+url: "https://askjarv.github.io"
+baseurl: "/nextnextnextfinishedblog-jekyll"
+lang: en-GB
+timezone: Europe/London
+
+permalink: /posts/:slug.html
+paginate: 10
+paginate_path: "/page/:num/"
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+

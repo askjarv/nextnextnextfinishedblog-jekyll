@@ -1,18 +1,27 @@
 ---
 layout: default
 ---
-<article class="post">
-  <header>
+<article class="post-full">
+  <header class="post-header">
+    <a class="eyebrow back-link" href="{{ '/' | relative_url }}">&larr; RETURN TO ARCHIVE</a>
     <h1>{{ page.title | default: "Untitled" }}</h1>
-    <div class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></div>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>
+      <span aria-hidden="true">//</span>
+      <span>READING LOG</span>
+    </div>
     {% if page.tags.size > 0 %}
-      <div class="tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+      <div class="tags" aria-label="Tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
     {% endif %}
   </header>
   <div class="post-content">{{ content }}</div>
 </article>
 <nav class="post-nav" aria-label="Adjacent posts">
-  {% if page.previous %}<a class="post-nav-link" href="{{ page.previous.url | relative_url }}">&larr; Older: {{ page.previous.title | default: "Untitled" }}</a>{% else %}<span></span>{% endif %}
-  {% if page.next %}<a class="post-nav-link align-right" href="{{ page.next.url | relative_url }}">Newer: {{ page.next.title | default: "Untitled" }} &rarr;</a>{% endif %}
+  {% if page.previous %}
+    <a class="post-nav-link" href="{{ page.previous.url | relative_url }}"><span>OLDER ENTRY</span>{{ page.previous.title | default: "Untitled" }}</a>
+  {% else %}<span></span>{% endif %}
+  {% if page.next %}
+    <a class="post-nav-link align-right" href="{{ page.next.url | relative_url }}"><span>NEWER ENTRY</span>{{ page.next.title | default: "Untitled" }}</a>
+  {% endif %}
 </nav>
 

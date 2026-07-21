@@ -3,21 +3,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10101a">
     {% seo %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     {% feed_meta %}
   </head>
   <body>
-    <div class="container">
-      <header class="site-header">
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-        <p>{{ site.description }}</p>
-      </header>
-      <main>{{ content }}</main>
-      <footer class="site-footer">
-        <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>
-      </footer>
-    </div>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+          <span>NEXT_NEXT_NEXT</span><span class="brand-cursor">_FINISHED</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="{{ '/' | relative_url }}">Posts</a>
+          <a href="https://hudsonc.com/">About</a>
+          <a href="https://github.com/askjarv">Codebase</a>
+          <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+        </nav>
+      </div>
+    </header>
+    <main id="content" class="page-shell">{{ content }}</main>
+    <footer class="site-footer">
+      <div class="footer-shell">
+        <span>&copy; {{ 'now' | date: '%Y' }} Chris Hudson.</span>
+        <span class="system-status"><i aria-hidden="true"></i> SYSTEM ONLINE</span>
+      </div>
+    </footer>
   </body>
 </html>
 

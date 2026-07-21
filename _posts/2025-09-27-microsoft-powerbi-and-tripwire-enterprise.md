@@ -24,7 +24,7 @@ Remember you'll want to factor in things like ensuring you have a valid SSL cert
 For those who prefer to look at the "code behind" the scenes, you'll end up with something like this for nodegroups from this aprpacoh:
 
 ```
-letSource = Json.Document(Web.Contents("https://teconsole.munchkin-justice.ts.net:8443/api/v1/nodegroups")),#"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),#"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"description", "id", "importedTime", "modifiedTime", "name", "type"}, {"description", "id", "importedTime", "modifiedTime", "name", "type"}),#"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"description", type any}, {"id", type text}, {"importedTime", type datetime}, {"modifiedTime", type datetime}, {"name", type text}, {"type", type text}})in#"Changed Type"
+{% raw %}letSource = Json.Document(Web.Contents("https://teconsole.munchkin-justice.ts.net:8443/api/v1/nodegroups")),#"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),#"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"description", "id", "importedTime", "modifiedTime", "name", "type"}, {"description", "id", "importedTime", "modifiedTime", "name", "type"}),#"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"description", type any}, {"id", type text}, {"importedTime", type datetime}, {"modifiedTime", type datetime}, {"name", type text}, {"type", type text}})in#"Changed Type"{% endraw %}
 ```
 
 And here's some example report/dashboard screenshots I've created in the past to demo/inspire:
